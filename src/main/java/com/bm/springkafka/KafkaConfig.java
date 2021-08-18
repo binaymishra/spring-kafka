@@ -25,10 +25,10 @@ public class KafkaConfig {
 
   @Bean
   public ProducerFactory<String, String> producerFactory() {
-    return new DefaultKafkaProducerFactory<>(senderProps());
+    return new DefaultKafkaProducerFactory<>(producerProps());
   }
 
-  private Map<String, Object> senderProps() {
+  private Map<String, Object> producerProps() {
     Map<String, Object> props = new HashMap<>();
     props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
     props.put(ProducerConfig.LINGER_MS_CONFIG, 10);
