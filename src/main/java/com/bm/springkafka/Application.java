@@ -23,16 +23,16 @@ public class Application {
   }
 
   @KafkaListener(topics = "topic-1", groupId = "group_id")
-  public void listenGreeting(String message) {
+  public void listenGreeting(Object message) {
     System.out.println("Consume message << " + message);
   }
 
   @Bean
-  ApplicationRunner applicationRunner(final KafkaTemplate<String, String> kafkaTemplate) {
+  ApplicationRunner applicationRunner(final KafkaTemplate<String, Object> kafkaTemplate) {
     return args ->
         IntStream.range(0, 5)
             .forEach(i -> {
-              String message = i + ". Hi, Binay !";
+              KafkaUser message = new KafkaUser(i + ". Hi, Binay !");
               System.out.println("Produce message >> " + message);
               kafkaTemplate.send("topic-1", "key_" + i, message);
             });
