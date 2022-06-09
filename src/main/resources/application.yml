@@ -1,0 +1,17 @@
+server:
+  port: 3001
+
+spring:
+  output.ansi.enabled: always
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      to-topic: topic_local
+
+
+    consumer:
+      auto-offset-reset: earliest
+      group-id: group_id
+      bootstrap-servers: localhost:9092
+      from-topic: topic_local
